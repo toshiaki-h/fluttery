@@ -14,4 +14,4 @@ pubspec.lock
 doc/api/
 
 # An iOS directory keeps getting auto-generated. Ignore it explicitly.
-ios/
+/ios/

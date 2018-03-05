@@ -1,4 +1,6 @@
+import 'package:example/directory_screen.dart';
 import 'package:example/example_framing.dart';
+import 'package:example/example_radial_drag.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(new MyApp());
@@ -11,26 +13,41 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new MyHomePage(),
+      routes: {
+        '/': (context) => new Page(
+          child: new DirectoryScreen(),
+        ),
+        '/randomColorBlock': (context) => new Page(
+          child: new RandomColorBlockExampleScreen(),
+        ),
+        '/radialDrag': (context) => new Page(
+          child: new RadialDragExampleScreen(),
+        ),
+      },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class Page extends StatefulWidget {
+
+  final child;
+
+  Page({
+    this.child,
+  });
+
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _PageState createState() => new _PageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _PageState extends State<Page> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('Fluttery'),
       ),
-      body: new FramingExampleScreen(
-        
-      )
+      body: widget.child,
     );
   }
 }

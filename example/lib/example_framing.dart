@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttery/framing.dart';
 
-class FramingExampleScreen extends StatelessWidget {
+class RandomColorBlockExampleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Center(

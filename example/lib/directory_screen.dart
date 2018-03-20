@@ -11,6 +11,10 @@ class DirectoryScreen extends StatelessWidget {
       'title': 'Radial Gesture Detetor',
       'route': '/radialDrag',
     },
+    {
+      'title': 'Animation Player',
+      'route': '/animationPlayer',
+    }
   ];
 
   @override

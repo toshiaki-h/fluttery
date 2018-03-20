@@ -1,4 +1,5 @@
 import 'package:example/directory_screen.dart';
+import 'package:example/example_animation_player.dart';
 import 'package:example/example_framing.dart';
 import 'package:example/example_radial_drag.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
         ),
         '/radialDrag': (context) => new Page(
           child: new RadialDragExampleScreen(),
+        ),
+        '/animationPlayer': (context) => new Page(
+          child: new AnimationPlayerExampleScreen(),
         ),
       },
     );

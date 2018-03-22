@@ -14,7 +14,7 @@ class _AnimationPlayerExampleState extends State<AnimationPlayerExampleScreen> {
   PlayableAnimation _playableAnimation;
   // A PhaseController is only necessary if the animation that you're
   // controlling also responds to user input or some other outside force.
-  PhaseController _phaseController = new PhaseController();
+  PhaseController _phaseController;
 
   @override
   void initState() {
@@ -46,6 +46,10 @@ class _AnimationPlayerExampleState extends State<AnimationPlayerExampleScreen> {
         ),
       ],
     );
+
+    _phaseController = new PhaseController(
+        phaseCount: _playableAnimation.phases.length
+    );
   }
 
   // Increments or decrements the active phase when the user taps. This is
@@ -53,19 +57,20 @@ class _AnimationPlayerExampleState extends State<AnimationPlayerExampleScreen> {
   // supporting user interaction with your animation.
   _changePercentDueToUserTap() {
     int prevActivePhase = _phaseController.activePhase;
+    double prevPhaseProgress = _phaseController.phaseProgress;
 
     if (_phaseController.playingForward) {
       _phaseController.nextPhase();
 
-      if (prevActivePhase == _phaseController.activePhase) {
-        _phaseController.update(playingForward: false);
+      if (prevActivePhase == _phaseController.activePhase
+          && prevPhaseProgress == _phaseController.phaseProgress) {
         _phaseController.prevPhase();
       }
     } else {
       _phaseController.prevPhase();
 
-      if (prevActivePhase == _phaseController.activePhase) {
-        _phaseController.update(playingForward: true);
+      if (prevActivePhase == _phaseController.activePhase
+          && prevPhaseProgress == _phaseController.phaseProgress) {
         _phaseController.nextPhase();
       }
     }

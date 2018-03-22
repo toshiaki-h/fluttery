@@ -300,46 +300,75 @@ class PhaseController extends ChangeNotifier {
   }
 
   nextPhase() {
+    bool isDirty = false;
+
+    if (!_playingForward) {
+      _phaseProgress = 1.0 - _phaseProgress;
+      _playingForward = true;
+      isDirty = true;
+    }
+
     final phasePosition = _phasePosition();
 
     if (phasePosition < phaseCount) {
-      _activePhase++;
-    } else {
-      _activePhase = phaseCount - 1;
+      if (_activePhase < phaseCount - 1) {
+        _activePhase++;
+        _phaseProgress = 0.0;
+        isDirty = true;
+      } else if (_phaseProgress < 1.0) {
+        _phaseProgress = 1.0;
+        isDirty = true;
+      }
     }
-    _phaseProgress = 0.0;
-    _playingForward = true;
 
-    notifyListeners();
+    if (isDirty) {
+      notifyListeners();
+    }
   }
 
   prevPhase() {
+    bool isDirty = false;
+
+    if (_playingForward) {
+      _phaseProgress = 1.0 - _phaseProgress;
+      _playingForward = false;
+      isDirty = true;
+    }
+
     final phasePosition = _phasePosition();
 
-    if (phasePosition >= 1) {
-      _activePhase--;
-    } else {
-      _activePhase = 0;
+    if (phasePosition > 0) {
+      if (phaseProgress < 1.0) {
+        _phaseProgress = 1.0;
+        isDirty = true;
+      } else if (_activePhase >= 1) {
+        _activePhase--;
+        isDirty = true;
+      }
     }
-    _phaseProgress = 0.0;
-    _playingForward = true;
 
-    notifyListeners();
+    if (isDirty) {
+      notifyListeners();
+    }
   }
 
   _phasePosition() {
-    final progressVector = playingForward ? phaseProgress : -phaseProgress;
+    final progressVector = playingForward ? phaseProgress : 1.0 - phaseProgress;
     return activePhase + progressVector;
   }
 
   update({int activePhase, double phaseProgress, playingForward}) {
-    _activePhase = activePhase ?? _activePhase;
-    _phaseProgress = phaseProgress ?? _phaseProgress;
-    _playingForward = playingForward ?? _playingForward;
+    final newActivePhase = activePhase ?? _activePhase;
+    final newPhaseProgress = phaseProgress ?? _phaseProgress;
+    final newPlayingForward = playingForward ?? _playingForward;
 
-    notifyListeners();
+    if (_activePhase != newActivePhase || _phaseProgress != newPhaseProgress || _playingForward != newPlayingForward) {
+      _activePhase = newActivePhase;
+      _phaseProgress = newPhaseProgress;
+      _playingForward = newPlayingForward;
+      notifyListeners();
+    }
   }
-
 }
 
 /// A transition that supports forward and reverse playback.

@@ -1,3 +1,7 @@
+## [0.0.5] - March 22, 2018.
+
+* Bug fixes for AnimationPlayer.
+
 ## [0.0.4] - March 22, 2018.
 
 * Updated AnimationPlayer to work with user input and other outside signals while still manually controlling an animation.

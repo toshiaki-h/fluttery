@@ -1,3 +1,8 @@
+## [0.0.4] - March 22, 2018.
+
+* Updated AnimationPlayer to work with user input and other outside signals while still manually controlling an animation.
+* Removed the print() statements from AnimationPlayer.
+
 ## [0.0.3] - March 19, 2018.
 
 * Added AnimationPlayer under fluttery:animations.

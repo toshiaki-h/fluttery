@@ -1,3 +1,9 @@
+## [0.0.6] - May 11, 2018.
+
+* Added CenterAbout Widget to center a child at a given Offset position.
+* Added OverlayBuilder Widget that uses a provided WidgetBuilder to construct and display an overlay.
+* Added AnchoredOverlay Widget that uses a provided builder to construct an overlay directly above another Widget.
+
 ## [0.0.5] - March 22, 2018.
 
 * Bug fixes for AnimationPlayer.

@@ -8,6 +8,10 @@ class DirectoryScreen extends StatelessWidget {
       'route': '/randomColorBlock',
     },
     {
+      'title': 'Overlay Layouts',
+      'route': '/layoutOverlay',
+    },
+    {
       'title': 'Radial Gesture Detetor',
       'route': '/radialDrag',
     },

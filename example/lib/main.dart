@@ -1,6 +1,7 @@
 import 'package:example/directory_screen.dart';
 import 'package:example/example_animation_player.dart';
 import 'package:example/example_framing.dart';
+import 'package:example/example_layout_overlay.dart';
 import 'package:example/example_radial_drag.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
         ),
         '/randomColorBlock': (context) => new Page(
           child: new RandomColorBlockExampleScreen(),
+        ),
+        '/layoutOverlay': (context) => new Page(
+          child: new LayoutOverlayExampleScreen(),
         ),
         '/radialDrag': (context) => new Page(
           child: new RadialDragExampleScreen(),

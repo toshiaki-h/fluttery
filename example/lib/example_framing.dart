@@ -10,31 +10,27 @@ class RandomColorBlockExampleScreen extends StatelessWidget {
         children: [
           // Top Bar
           new RandomColorBlock(
-            width: double.INFINITY,
+            width: double.infinity,
             height: 75.0,
             child: new Center(
               child: new Container(
                 padding: const EdgeInsets.all(15.0),
                 color: Colors.white,
-                child: new Text(
-                  'Random Block Color'
-                ),
+                child: new Text('Random Block Color'),
               ),
             ),
           ),
 
           // Square below top Bar
           new RandomColorBlock(
-            width: double.INFINITY,
+            width: double.infinity,
             child: new AspectRatio(
               aspectRatio: 1.0,
               child: new Center(
                 child: new Container(
                   padding: const EdgeInsets.all(15.0),
                   color: Colors.white,
-                  child: new Text(
-                    'Random colors live across hot reloads.'
-                  ),
+                  child: new Text('Random colors live across hot reloads.'),
                 ),
               ),
             ),
@@ -43,7 +39,7 @@ class RandomColorBlockExampleScreen extends StatelessWidget {
           // Bottom bar
           new Expanded(
             child: new RandomColorBlock(
-              width: double.INFINITY,
+              width: double.infinity,
             ),
           ),
         ],

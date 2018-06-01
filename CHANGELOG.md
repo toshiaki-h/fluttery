@@ -1,3 +1,7 @@
+## [0.0.7] - May 31, 2018.
+
+* Changed AnchoredOverlay to report its anchor's bounds in addition to the anchor's center.
+
 ## [0.0.6] - May 11, 2018.
 
 * Added CenterAbout Widget to center a child at a given Offset position.

@@ -15,9 +15,8 @@ import 'package:flutter/widgets.dart';
 ///
 /// The [overlayBuilder] is invoked every time this Widget is rebuilt.
 class AnchoredOverlay extends StatelessWidget {
-
   final bool showOverlay;
-  final Widget Function(BuildContext, Offset anchor) overlayBuilder;
+  final Widget Function(BuildContext, Rect anchorBounds, Offset anchor) overlayBuilder;
   final Widget child;
 
   AnchoredOverlay({
@@ -36,16 +35,22 @@ class AnchoredOverlay extends StatelessWidget {
         builder: (BuildContext context, BoxConstraints constraints) {
           return new OverlayBuilder(
             showOverlay: showOverlay,
-
             overlayBuilder: (BuildContext overlayContext) {
               // To calculate the "anchor" point we grab the render box of
               // our parent Container and then we find the center of that box.
               RenderBox box = context.findRenderObject() as RenderBox;
-              final center = box.size.center(box.localToGlobal(const Offset(0.0, 0.0)));
+              final topLeft = box.size.topLeft(box.localToGlobal(const Offset(0.0, 0.0)));
+              final bottomRight = box.size.bottomRight(box.localToGlobal(const Offset(0.0, 0.0)));
+              final Rect anchorBounds = new Rect.fromLTRB(
+                topLeft.dx,
+                topLeft.dy,
+                bottomRight.dx,
+                bottomRight.dy,
+              );
+              final anchorCenter = box.size.center(topLeft);
 
-              return overlayBuilder(overlayContext, center);
+              return overlayBuilder(overlayContext, anchorBounds, anchorCenter);
             },
-
             child: child,
           );
         },
@@ -67,7 +72,6 @@ class AnchoredOverlay extends StatelessWidget {
 /// overlay Widgets exist in [OverlayEntry]s which are inaccessible to
 /// outside Widgets. But if a better approach is found then feel free to use it.
 class OverlayBuilder extends StatefulWidget {
-
   final bool showOverlay;
   final Widget Function(BuildContext) overlayBuilder;
   final Widget child;
@@ -84,7 +88,6 @@ class OverlayBuilder extends StatefulWidget {
 }
 
 class _OverlayBuilderState extends State<OverlayBuilder> {
-
   OverlayEntry overlayEntry;
 
   @override
@@ -161,5 +164,4 @@ class _OverlayBuilderState extends State<OverlayBuilder> {
 
     return widget.child;
   }
-
 }

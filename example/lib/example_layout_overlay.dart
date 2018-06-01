@@ -9,7 +9,6 @@ class LayoutOverlayExampleScreen extends StatefulWidget {
 }
 
 class _LayoutOverlayExampleScreenState extends State<LayoutOverlayExampleScreen> {
-
   final fadeDuration = const Duration(milliseconds: 500);
 
   bool isOverlayDesired = false;
@@ -27,7 +26,7 @@ class _LayoutOverlayExampleScreenState extends State<LayoutOverlayExampleScreen>
 
     new Timer(
       fadeDuration,
-      () => setState(() => isOverlayVisible = isOverlayDesired)
+      () => setState(() => isOverlayVisible = isOverlayDesired),
     );
   }
 
@@ -71,7 +70,7 @@ class _LayoutOverlayExampleScreenState extends State<LayoutOverlayExampleScreen>
         new Expanded(
           child: new AnchoredOverlay(
             showOverlay: isOverlayVisible,
-            overlayBuilder: (BuildContext context, Offset anchor) {
+            overlayBuilder: (BuildContext context, Rect anchorBounds, Offset anchor) {
               return buildOverlay(anchor);
             },
             child: new Container(

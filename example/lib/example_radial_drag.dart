@@ -7,7 +7,6 @@ class RadialDragExampleScreen extends StatefulWidget {
 }
 
 class _RadialDragExampleState extends State<RadialDragExampleScreen> {
-
   bool isDragging = false;
   PolarCoord lastDragCoord;
 
@@ -42,7 +41,7 @@ class _RadialDragExampleState extends State<RadialDragExampleScreen> {
     return new Column(
       children: [
         new Container(
-          width: double.INFINITY,
+          width: double.infinity,
           padding: const EdgeInsets.all(15.0),
           color: Colors.grey,
           child: new Text(

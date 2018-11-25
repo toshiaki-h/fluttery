@@ -16,7 +16,8 @@ import 'package:flutter/widgets.dart';
 /// The [overlayBuilder] is invoked every time this Widget is rebuilt.
 class AnchoredOverlay extends StatelessWidget {
   final bool showOverlay;
-  final Widget Function(BuildContext, Rect anchorBounds, Offset anchor) overlayBuilder;
+  final Widget Function(BuildContext, Rect anchorBounds, Offset anchor)
+      overlayBuilder;
   final Widget child;
 
   AnchoredOverlay({
@@ -39,8 +40,10 @@ class AnchoredOverlay extends StatelessWidget {
               // To calculate the "anchor" point we grab the render box of
               // our parent Container and then we find the center of that box.
               RenderBox box = context.findRenderObject() as RenderBox;
-              final topLeft = box.size.topLeft(box.localToGlobal(const Offset(0.0, 0.0)));
-              final bottomRight = box.size.bottomRight(box.localToGlobal(const Offset(0.0, 0.0)));
+              final topLeft =
+                  box.size.topLeft(box.localToGlobal(const Offset(0.0, 0.0)));
+              final bottomRight = box.size
+                  .bottomRight(box.localToGlobal(const Offset(0.0, 0.0)));
               final Rect anchorBounds = new Rect.fromLTRB(
                 topLeft.dx,
                 topLeft.dy,
@@ -95,20 +98,20 @@ class _OverlayBuilderState extends State<OverlayBuilder> {
     super.initState();
 
     if (widget.showOverlay) {
-      showOverlay();
+      WidgetsBinding.instance.addPostFrameCallback((_) => showOverlay());
     }
   }
 
   @override
   void didUpdateWidget(OverlayBuilder oldWidget) {
     super.didUpdateWidget(oldWidget);
-    syncWidgetAndOverlay();
+    WidgetsBinding.instance.addPostFrameCallback((_) => syncWidgetAndOverlay());
   }
 
   @override
   void reassemble() {
     super.reassemble();
-    syncWidgetAndOverlay();
+    WidgetsBinding.instance.addPostFrameCallback((_) => syncWidgetAndOverlay());
   }
 
   @override
@@ -160,7 +163,7 @@ class _OverlayBuilderState extends State<OverlayBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    buildOverlay();
+    WidgetsBinding.instance.addPostFrameCallback((_) => buildOverlay());
 
     return widget.child;
   }

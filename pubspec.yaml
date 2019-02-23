@@ -1,15 +1,15 @@
 name: fluttery
 description: Flutter package that helps with prototyping.
-version: 0.0.7
+version: 0.0.8
 author: Matt Carroll <fluttery.io@gmail.com>
 homepage: https://github.com/matthew-carroll/fluttery
 
 environment:
-  sdk: '>=1.19.0 <3.0.0'
+  sdk: '>=2.0.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  test: ^0.12.0
+  test: ^1.5.3

@@ -1,3 +1,7 @@
+## [0.0.8] - February 9, 2018.
+
+* Upgraded library to be Dart 2 compliant. Updated example project to a current Flutter project structure due to framework changes.
+
 ## [0.0.7] - May 31, 2018.
 
 * Changed AnchoredOverlay to report its anchor's bounds in addition to the anchor's center.
